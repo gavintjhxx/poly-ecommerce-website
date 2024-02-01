@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Product</title>
+    <script src="../js/update_product.js"></script>
+    <link rel="stylesheet" href="../css/update_product.css" />
+</head>
+
+<body onload="getCategories()">
+    <div class="navbar-container">
+        <div class="navbar-header-container" class="flex flex-shrink-0 items-center">
+            <p class="navbar-header">Update Product</p>
+        </div>
+        <div class="navbar-items-container">
+            <div class="navbar-items">
+                <a href="/home.html" class="navbar-item">Home</a>
+                <a href="/insert_product.html" class="navbar-item">Insert</a>
+                <a href="/delete_product.html" class="navbar-item">Delete</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="body-container">
+        <div class="form-container">
+            <p class="form-header">Product Details</p>
+            <form onsubmit="updateProduct()" enctype="multipart/form-data">
+                <div class="form-item">
+                    <label for="form-product-id" class="form-label">ID</label>
+                    <input type="text" id="form-product-id" name="id" placeholder="Product ID" class="form-input" required>
+                </div>
+                <div class="form-item">
+                    <label for="form-name" class="form-label">Name</label>
+                    <input type="text" id="form-name" name="name" placeholder="Product Name" class="form-input">
+                </div>
+                <div class="form-item">
+                    <label for="form-price" class="form-label">Price</label>
+                    <input type="number" id="form-price" name="price" placeholder="Product Price" class="form-input">
+                </div>
+                <div class="form-item">
+                    <label for="form-description" class="form-label">Description</label>
+                    <input type="text" id="form-description" name="description" placeholder="Description" class="form-input">
+                </div>
+                <div class="form-item">
+                    <label for="form-image" class="form-label">Image</label>
+                    <input type="text" id="form-image" name="image" placeholder="Image Url" class="form-input">
+                </div>
+                <div class="form-item">
+                    <label for="form-category" class="form-label">Category</label>
+                    <select id="form-category" name="category" class="form-dropdown-menu">
+                        <!-- Automatic  -->
+                    </select>
+                </div>
+                <div class="form-item">
+                    <input type="submit" value="Update Product">
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Product</title>
+    <script src="../js/delete_product.js"></script>
+    <link rel="stylesheet" href="../css/delete_product.css" />
+</head>
+
+<body>
+    <div class="navbar-container">
+        <div class="navbar-header-container" class="flex flex-shrink-0 items-center">
+            <p class="navbar-header">Delete Product</p>
+        </div>
+        <div class="navbar-items-container">
+            <div class="navbar-items">
+                <a href="/home.html" class="navbar-item">Home</a>
+                <a href="/insert_product.html" class="navbar-item">Insert</a>
+                <a href="/update_product.html" class="navbar-item">Update</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="body-container">
+        <div class="form-container">
+            <p class="form-header">Product Details</p>
+            <form onsubmit="deleteProduct()" enctype="multipart/form-data">
+                <div class="form-item">
+                    <label for="form-product-id" class="form-label">ID</label>
+                    <input type="text" id="form-product-id" name="id" placeholder="Product ID" class="form-input" required>
+                </div>
+                <div class="form-item">
+                    <input type="submit" value="Delete Product">
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

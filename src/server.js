@@ -17,7 +17,7 @@ app.route('/categories').get(function (req, res) {
     //perform query to database from web server
     db.query(sql, function(error, result) {
         if(error) {
-            throw error;
+            res.json(error);
         } else {
             //return result as json
             res.json(result);
@@ -33,7 +33,7 @@ app.route('/products').get(function (req, res) {
     //perform query to database from web server
     db.query(sql, function(error, result) {
         if(error) {
-            throw error;
+            res.json(error);
         } else {
             //return result as json
             res.json(result);
@@ -41,7 +41,7 @@ app.route('/products').get(function (req, res) {
     });
 });
 
-// Products route, used to get product from the database.
+// Products route, used to insert product into the database
 app.route('/products').post(function (req, res) {
     // body is json object
     const body = [req.body.name, req.body.description, req.body.price, req.body.picture, req.body.category_id];
@@ -50,7 +50,7 @@ app.route('/products').post(function (req, res) {
     //perform query to database from web server
     db.query(sqlQuery, body, function(error, result) {
         if(error) {
-            throw error;
+            res.json(error);
         } else {
             //return result as json
             res.json(result);
@@ -64,7 +64,7 @@ app.route('/products/:id').delete(function(req, res) {
     //perform query to database from web server
     db.query(sqlQuery, function(error, result) {
         if(error) {
-            throw error;
+            res.json(error);
         } else {
             //return result as json
             res.json(result);
@@ -92,7 +92,7 @@ app.route('/products/:id').put(function(req, res) {
     //perform query to database from web server
     db.query(sqlQuery, function(error, result) {
         if(error) {
-            throw error;
+            res.json(error);
         } else {
             //return result as json
             res.json(result);

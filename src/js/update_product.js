@@ -38,8 +38,15 @@ function updateProduct() {
         req.open("PUT", `http://localhost:8080/products/${productId}`);
         req.setRequestHeader("Content-Type", "application/json");
         req.send(JSON.stringify(product));
-        alert(`PUT ${product.name} ${product.imageUrl} ${product.description} ${product.category} $${product.price}`);
+        req.onload = () => {
+            // res is the entire JSON response from the database
+            const res = JSON.parse(req.response);
+            // if number of rows is 0, then no product was updated, meaning the ID was incorrect.
+            // however, this error may come as a result of other field errors
+            // else, a product was updated and prompt success.
+            res.affectedRows == 0 ? alert(`Something went wrong.\n${res}`) : alert("Product updated successfully");
+        }
     } catch (err) {
-        alert(`Something went wrong. (PUT /products/${productId})\n${err.message}`);
+        alert(`Something went wrong.\n${err.message}`);
     }
 }

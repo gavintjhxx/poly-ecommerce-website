@@ -33,13 +33,17 @@ function insertProduct() {
             price: parseInt(document.getElementById('form-price').value),
             category_id: parseInt(document.getElementById('form-category').value)
         };
-    
         
         const req = new XMLHttpRequest();
         req.open("POST", "http://localhost:8080/products");
         req.setRequestHeader("Content-Type", "application/json");
         req.send(JSON.stringify(product));
-        alert("Inserted product");
+        req.onload = () => {
+            // res is nothing when the product is successfully inserted.
+            const res = JSON.parse(req.response);
+            // hence, prompt an error when res is NOT nothing/empty/null/undefined
+            res ? alert("Product inserted successfully.") : alert(`Something went wrong.\n${res}`);
+        }
     } catch (err) {
         alert(`Something went wrong. (POST /products)\n${err}`);
     }

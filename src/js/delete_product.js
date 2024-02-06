@@ -6,7 +6,13 @@ function deleteProduct() {
         req.open("DELETE", `http://localhost:8080/products/${productId}`);
         req.setRequestHeader("Content-Type", "application/json");
         req.send();
-        alert(`Product deleted (ID: ${productId})`);
+        req.onload = () => {
+            // res is the number of rows affected after attempting to delete
+            const res = JSON.parse(req.response).affectedRows;
+            // if number of rows is 0, then no product was deleted, meaning the ID was incorrect.
+            // else, a product was deleted and prompt success.
+            res == 0 ? alert("Product not found. Please try again") : alert("Product deleted successfully");
+        }
     } catch (err) {
         alert(`Something went wrong. (DELETE /products/${productId})\n${err}`);
     }

@@ -1,8 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser'); // allow json data to pass through body
 const path = require("path");
-const db = require("./dbConnection");
 
+const db = require("./dbConnection");
 const app = express();
 const port = 8080;
 
@@ -11,12 +11,13 @@ app.use(bodyParser.json());
 
 // Categories route, used in /home.html to get category name by id
 app.route('/categories').get(function (req, res) {
-    // the database retrieval code
-    //implement SELECT query to retrieve all RESTAURANTS
+    //implement SELECT query to retrieve all categories
     let sql = "SELECT * FROM category";
     //perform query to database from web server
     db.query(sql, function(error, result) {
         if(error) {
+            // using res.json() rather than throw error then crash the program
+            // advantage: also allows for error handling
             res.json(error);
         } else {
             //return result as json
@@ -27,12 +28,13 @@ app.route('/categories').get(function (req, res) {
 
 // Products route, used in home.html to list products
 app.route('/products').get(function (req, res) {
-    // the database retrieval code
-    //implement SELECT query to retrieve all RESTAURANTS
+    //implement SELECT query to retrieve all products
     let sql = "SELECT * FROM product";
     //perform query to database from web server
     db.query(sql, function(error, result) {
         if(error) {
+            // using res.json() rather than throw error then crash the program
+            // advantage: also allows for error handling
             res.json(error);
         } else {
             //return result as json
@@ -41,15 +43,17 @@ app.route('/products').get(function (req, res) {
     });
 });
 
-// Products route, used to insert product into the database
+// Products route, used to insert product into the database from /insert_product.html
 app.route('/products').post(function (req, res) {
     // body is json object
     const body = [req.body.name, req.body.description, req.body.price, req.body.picture, req.body.category_id];
-    // INSERT into database products.products
+    // INSERT into products
     const sqlQuery = `INSERT INTO product (name, description, price, picture, category_id) VALUES (?,?,?,?,?)`;
     //perform query to database from web server
     db.query(sqlQuery, body, function(error, result) {
         if(error) {
+            // using res.json() rather than throw error then crash the program
+            // advantage: also allows for error handling
             res.json(error);
         } else {
             //return result as json
@@ -58,12 +62,15 @@ app.route('/products').post(function (req, res) {
     });
 });
 
-// Products route to delete product by specified id
+// Products route to delete product by specified id from delete_product.html
 app.route('/products/:id').delete(function(req, res) {
+    // DELETE from products
     let sqlQuery = `DELETE FROM product WHERE id = ${req.params.id}`;
     //perform query to database from web server
     db.query(sqlQuery, function(error, result) {
         if(error) {
+            // using res.json() rather than throw error then crash the program
+            // advantage: also allows for error handling
             res.json(error);
         } else {
             //return result as json
@@ -72,6 +79,7 @@ app.route('/products/:id').delete(function(req, res) {
     });
 });
 
+// Products route to update product by specified id from update_product.html
 app.route('/products/:id').put(function(req, res) {
     // body is json object
     const body = req.body;
@@ -92,6 +100,8 @@ app.route('/products/:id').put(function(req, res) {
     //perform query to database from web server
     db.query(sqlQuery, function(error, result) {
         if(error) {
+            // using res.json() rather than throw error then crash the program
+            // advantage: also allows for error handling
             res.json(error);
         } else {
             //return result as json

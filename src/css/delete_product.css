@@ -1,4 +1,7 @@
+/* similar to targetting the <html> tag */
 :root {
+    /* similar to creating variables to store data */
+    /* but this stores colours than can be used later */
     --text-color-white: white;
     --text-color-black: #18181b;
     --accent-color-light: #E8C490;
@@ -18,7 +21,7 @@ html, body {
 }
 
 div, p, a, span {
-    color: --text-color-black;
+    color: var(--text-color-black);
 }
 
 /* Navigation */

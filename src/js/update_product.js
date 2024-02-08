@@ -7,9 +7,9 @@ function getCategories() {
         reqCategories.onload = () => {
             const categories = JSON.parse(reqCategories.response);
             html = "";
-            index = 0;
+            index = 0; // start at -1 so it becomes index 1 on first increment
             for (let category of categories) {
-                index += 1;
+                index += 1; // assign the option value to index, which is the category id
                 const categoryName = category.name;
                 html += `<option value="${index}">${categoryName}</option>`;
             };

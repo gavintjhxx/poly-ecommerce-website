@@ -1,6 +1,6 @@
 function deleteProduct() {
     const productId = document.getElementById('form-product-id').value;
-
+    // use trycatch to catch any error than occurs along the way
     try {
         const req = new XMLHttpRequest();
         req.open("DELETE", `http://localhost:8080/products/${productId}`);

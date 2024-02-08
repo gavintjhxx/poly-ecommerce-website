@@ -1,8 +1,9 @@
 function loadProducts() {
-    // Get all categories first so 
-    // we can use the product category id to find the category name
+    // use trycatch to catch any error than occurs along the way
     try {
         const reqCategories = new XMLHttpRequest();
+        // We GET the categories first so we can access the
+        // category name via category id from the list of products
         reqCategories.open("GET", "http://localhost:8080/categories");
         reqCategories.send();
         reqCategories.onload = () => {
@@ -26,6 +27,9 @@ function loadProducts() {
                 • ID (auto increment)
                 */
                 for (let product of products) {
+                    // Compare the category list we obtained earlier
+                    // with the category id for each product in the list of products
+                    // to get the category name
                     const productCategoryName = categories.find(c => c.id == product.category_id).name;
                     html += `<div class="product-container">`;
                         html += `<img class="product-image" src="${product.picture}" alt="product image" />`;

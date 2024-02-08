@@ -1,3 +1,5 @@
+// In this page, getCategories() is used to list all categories
+// by the NAME using a dropdown menu
 function getCategories() {
     try {
         // Get all categories to list down in a dropdown menu
@@ -9,7 +11,7 @@ function getCategories() {
             html = "";
             index = 0; // start at -1 so it becomes index 1 on first increment
             for (let category of categories) {
-                index += 1;
+                index += 1; // assign the option value to index, which is the category id
                 const categoryName = category.name;
                 html += `<option value="${index}">${categoryName}</option>`;
             };
@@ -23,7 +25,7 @@ function getCategories() {
 }
 
 function insertProduct() {
-
+    // use trycatch to catch any error than occurs along the way
     try {
         // Form fields
         const product = {
